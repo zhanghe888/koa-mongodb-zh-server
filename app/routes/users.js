@@ -20,9 +20,19 @@ const {
   listFollowingTopics,
   followTopic,
   unfollowTopic,
-  listQuestions
+  listQuestions,
+  listLikingAnswers,
+  linkeAnswer,
+  unlikeAnswer,
+  listDisLikingAnswers,
+  dislinkeAnswer,
+  unDislikeAnswer,
+  listCollectingAnswers,
+  collectAnswer,
+  uncollectAnswer
 } = require('../controllers/users')
 const { checkTopicExist } = require('../controllers/topics')
+const { checkAnswerExist } = require('../controllers/answers')
 // 用koa-jwt做认证
 const auth = jwt({ secret })
 // 下面为自己写的认证中间件
@@ -53,4 +63,25 @@ router.get('/:id/followingTopics', listFollowingTopics) // 获取某个用户的
 router.put('/followingTopics/:id', auth, checkTopicExist, followTopic) // 关注某人
 router.delete('/followingTopics/:id', auth, checkTopicExist, unfollowTopic) // 取消关注某人
 router.get('/:id/questions', listQuestions) // 获取某个用户的关注人列表
+router.get('/:id/likingAnswers', listLikingAnswers) // 获取某个用户的关注人列表
+router.put(
+  '/likingAnswers/:id',
+  auth,
+  checkAnswerExist,
+  linkeAnswer,
+  unDislikeAnswer
+) // 关注某人
+router.delete('/likingAnswers/:id', auth, checkAnswerExist, unlikeAnswer) // 取消
+router.get('/:id/dislikingAnswers', listDisLikingAnswers) // 获取某个用户的关注人列表
+router.put(
+  '/dislikingAnswers/:id',
+  auth,
+  checkAnswerExist,
+  dislinkeAnswer,
+  unlikeAnswer
+) // 关注某人
+router.delete('/dislikingAnswers/:id', auth, checkAnswerExist, unDislikeAnswer) // 取消
+router.get('/:id/collectingAnswers', listCollectingAnswers) // 获取某个用户的关注人列表
+router.put('/collectingAnswers/:id', auth, checkAnswerExist, collectAnswer) // 关注某人
+router.delete('/collectingAnswers/:id', auth, checkAnswerExist, uncollectAnswer) // 取消
 module.exports = router

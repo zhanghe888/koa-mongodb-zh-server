@@ -16,7 +16,7 @@ const {
 const auth = jwt({ secret })
 
 router.get('/', find) //获取话题列表
-router.post('/', auth, create) //新建话题
+router.post('/', auth, create) //新建 话题
 router.get('/:id', checkTopicExist, findById) //获取特定话题
 router.patch('/:id', auth, checkTopicExist, update) //修改话题
 router.get('/:id/followers', checkTopicExist, listFollowers) //修改话题
