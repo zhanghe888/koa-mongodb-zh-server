@@ -20,7 +20,6 @@ class UsersCtl {
       .filter(f => f)
       .map(f => ' +' + f)
       .join('')
-    console.log(selectFields)
     const populateStr = fields
       .split(';')
       .filter(f => f)
