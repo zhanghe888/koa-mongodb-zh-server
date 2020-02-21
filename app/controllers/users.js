@@ -34,6 +34,8 @@ class UsersCtl {
       })
       .join(' ')
     const user = await User.findById(ctx.params.id)
+    console
+      .log(user)
       .select(selectFields)
       .populate(populateStr)
     if (!user) {
@@ -256,7 +258,9 @@ class UsersCtl {
     const me = await User.findById(ctx.state.user._id).select(
       '+collectingAnswers'
     )
-    if (!me.collectingAnswers.map(id => id.toString()).includes(ctx.params.id)) {
+    if (
+      !me.collectingAnswers.map(id => id.toString()).includes(ctx.params.id)
+    ) {
       me.collectingAnswers.push(ctx.params.id)
       me.save()
     }
