@@ -34,8 +34,6 @@ class UsersCtl {
       })
       .join(' ')
     const user = await User.findById(ctx.params.id)
-    console
-      .log(user)
       .select(selectFields)
       .populate(populateStr)
     if (!user) {
